@@ -1,7 +1,15 @@
 <aside>
     <ul class="ranking">
-      <li *ngFor="let state of sortedStates"> 
-        <h3 [style.color]="state.car.getColor()">{{ state.car.getName() }}</h3>
+      <li *ngFor="let state of sortedStates; let i=index"> 
+        <header>
+          <h3 [style.color]="state.car.getColor()">
+            {{ state.car.getName() }}
+          </h3>
+          @if(!playing){
+            <img src="trash.svg" (click)="deleteCar(i)">
+          }
+        </header>
+        
         @if (!state.eliminated) {
           <p>
             Target : 
@@ -43,5 +51,6 @@
       </span>
     </footer>
 
+    <car-list [gameHandler]="gameHandler"></car-list>
     <custom-car [gameHandler]="gameHandler"></custom-car>
   </aside>

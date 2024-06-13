@@ -16,15 +16,30 @@ aside{
     margin-bottom: 15px;
 }
 
+.ranking header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ranking header img{
+    height: 15px;
+    cursor: pointer;
+}
+
+
 .ranking li h3 , .ranking li p{
     margin:0px 5px;
     text-align: center;
 }
 
-.ranking li h3 {
+.ranking header h3 {
     background-color: #424b44;
     border-radius: 1em;
     padding: 2px;
+    margin-right: 15px;
+    width: 90%;
 }
 
 footer label{

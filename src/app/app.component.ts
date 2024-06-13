@@ -17,15 +17,18 @@ const mapSize = 800;
 })
 export class AppComponent {
 
-  targetNumber: number = getRandomArbitrary(5, 25)
-  nbTiles = 50
+  gameHandler = new GameHandlerService();
 
-  gameHandler = new GameHandlerService(this.nbTiles, this.targetNumber);
+  targetNumber: number = this.gameHandler.getTargetNumber()
+  nbTiles = this.gameHandler.getGameSize()
+  
   get tileSize (){
     return mapSize / this.nbTiles;
   }
 
   resetGame(){
-    this.gameHandler = new GameHandlerService(this.nbTiles, this.targetNumber);
+    this.gameHandler.setGameSize(this.nbTiles);
+    this.gameHandler.setTargetNumber(this.targetNumber);
+    this.gameHandler.resetGame();
   }
 }

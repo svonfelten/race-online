@@ -22,53 +22,23 @@ export class GameHandlerService {
   private currentState: Array<State> = [];
   private currentTargets: Array<Position> = [];
 
-  constructor(private gameSize: number, targetNumber: number) {
+  private targetNumber = getRandomArbitrary(5,25);
+  private gameSize = 50;
+
+  constructor() {
 
     this.currentState.push({
-      car: new MidCar(gameSize),
+      car: new GoodCar(this.gameSize),
       eliminated: false,
       finished: false,
-      position: new Position(Math.round(gameSize/2), Math.round(gameSize/2)),
+      position: new Position(Math.round(this.gameSize/2), Math.round(this.gameSize/2)),
       vector: new Vector(0, 0),
       steps: 0,
       currentTarget: 0,
       history: []
     })
 
-    this.currentState.push({
-      car: new GoodCar(gameSize),
-      eliminated: false,
-      finished: false,
-      position: new Position(Math.round(gameSize/2), Math.round(gameSize/2)),
-      vector: new Vector(0, 0),
-      steps: 0,
-      currentTarget: 0,
-      history: []
-    })
-
-    this.currentState.push({
-      car: new PredictionCar(gameSize),
-      eliminated: false,
-      finished: false,
-      position: new Position(Math.round(gameSize/2), Math.round(gameSize/2)),
-      vector: new Vector(0, 0),
-      steps: 0,
-      currentTarget: 0,
-      history: []
-    })
-
-    this.currentState.push({
-      car: new SixEyeCar(gameSize),
-      eliminated: false,
-      finished: false,
-      position: new Position(Math.round(gameSize/2), Math.round(gameSize/2)),
-      vector: new Vector(0, 0),
-      steps: 0,
-      currentTarget: 0,
-      history: []
-    })
-
-    this.computeTargets(targetNumber);
+    this.computeTargets(this.targetNumber);
   }
 
   public addRaceCar(raceCar: IRaceCar){
@@ -84,10 +54,49 @@ export class GameHandlerService {
     })
   }
 
+  public removeCar(index: number){
+    this.currentState.splice(index, 1);
+  }
+
+  setGameSize(size: number){
+    this.gameSize = size;
+    this.resetGame();
+  }
+
+  setTargetNumber(nb: number){
+    this.targetNumber = nb;
+    this.resetGame();
+  }
+
+  public resetGame(){
+    this.currentTargets = []
+    this.currentState = this.currentState.map(state => (
+      {
+        car: state.car,
+        eliminated: false,
+        finished: false,
+        position: new Position(Math.round(this.gameSize/2), Math.round(this.gameSize/2)),
+        vector: new Vector(0, 0),
+        steps: 0,
+        currentTarget: 0,
+        history: []
+      }
+    ));
+    this.computeTargets(this.targetNumber);
+  }
+
   private computeTargets( count: number){
     for(let i=0; i < count; i++){
       this.currentTargets.push(new Position(getRandomArbitrary(0, this.gameSize-1), getRandomArbitrary(0, this.gameSize-1)));
     }
+  }
+
+  getGameSize(){
+    return this.gameSize;
+  }
+
+  getTargetNumber(){
+    return this.targetNumber;
   }
 
   get getCurrentState(): Array<State> {

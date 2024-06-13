@@ -3,11 +3,12 @@ import { GameHandlerService } from '../game-handler.service';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CustomCarComponent } from '../custom-car/custom-car.component';
+import { CarListComponent } from '../car-list/car-list.component';
 
 @Component({
   selector: 'race-ranking',
   standalone: true,
-  imports: [NgFor, FormsModule, CustomCarComponent],
+  imports: [NgFor, FormsModule, CustomCarComponent, CarListComponent],
   templateUrl: './race-ranking.component.html',
   styleUrl: './race-ranking.component.css'
 })
@@ -30,6 +31,13 @@ export class RaceRankingComponent {
       if (a.currentTarget != b.currentTarget) return b.currentTarget - a.currentTarget;
       return a.steps - b.steps;
     });
+  }
+
+  deleteCar(index: number){
+    if(this.playing){
+      return;
+    }
+    this.gameHandler.removeCar(index);
   }
 
   nextStep(){
