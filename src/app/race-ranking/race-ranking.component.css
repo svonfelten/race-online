@@ -1,8 +1,8 @@
 aside{
     display: block;
-    width: 300px;
+    width: calc(100vw - 1000px);
     background-color: aliceblue;
-    height: fit-content;
+    height: max-content;
     border-radius: 5px;
     padding: 15px;
     margin: 15px;

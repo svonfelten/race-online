@@ -6,8 +6,6 @@ import { GoodCar } from '../shared/models/raceCars/GoodCar';
 import { MidCar } from '../shared/models/raceCars/MidCar';
 import { PredictionCar } from '../shared/models/raceCars/PredictionCar';
 import { SixEyeCar } from '../shared/models/raceCars/SixEyeCar';
-import { SlowCar } from '../shared/models/raceCars/SlowCar';
-
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.round(Math.random() * (max - min) + min);
@@ -25,16 +23,6 @@ export class GameHandlerService {
   private currentTargets: Array<Position> = [];
 
   constructor(private gameSize: number, targetNumber: number) {
-    // this.currentState.push({
-    //   car: new SlowCar(gameSize),
-    //   eliminated: false,
-    //   finished: false,
-    //   position: new Position(Math.round(gameSize/2), Math.round(gameSize/2)),
-    //   vector: new Vector(0, 0),
-    //   steps: 0,
-    //   currentTarget: 0,
-    //   history: []
-    // })
 
     this.currentState.push({
       car: new MidCar(gameSize),

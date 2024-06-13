@@ -1,6 +1,26 @@
 <div class="appDiv">
   <section class="map">
     <h1>Race</h1>
+    <details>
+      <summary>
+        Race againsts other competitors and try to get to all targets with the minimum amount of moves
+      </summary>
+
+      <p>
+        Each game happens in "frames" or "moves". Each car will be asked to return a Vector at the end of the frame.
+        This 2D vecor can only be changed by 1 each for example you can go from &#123; x: 0, y: 1&#125; -> &#123; x: 1, y: 2&#125; but not &#123; x: 2, y: -1&#125;.
+      </p>
+
+      <p>
+        So after each car has setted his move the vectors will be applied to the current positions.
+        The main goal is to get as much speed as possible without going out of the map and without cheating.
+      </p>
+
+      <footer>
+        Thank's JB for this great project. &#60;3
+      </footer>
+
+    </details>
     <main>
       <div *ngFor="let state of gameHandler.getCurrentState">
         <race-car [tileSize]="tileSize" [state]="state" [target]="gameHandler.tagets[state.currentTarget]"></race-car>

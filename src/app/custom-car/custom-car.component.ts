@@ -2,6 +2,40 @@ import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GameHandlerService } from '../game-handler.service';
 
+const placeholder = `
+class RaceCar implements IRaceCar{
+
+            constructor(private mapSize: number){ }
+        
+            getName(): string {
+                return "Slow car"
+            }
+            getColor(): string {
+                return "#fc603f"
+            }
+        
+            getNextAction(
+              currentPosition: Position,
+              currentVector: Vector,
+              target: Position
+            ): Vector {
+                const result = new Vector();
+                if(currentPosition.x > target.x){
+                    result.x = Math.max(-1, currentVector.x - 1);
+                }else if(currentPosition.x < target.x){
+                    result.x = Math.min(1, currentVector.x + 1);
+                }
+        
+                if(currentPosition.y > target.y){
+                    result.y = Math.max(-1, currentVector.y - 1);
+                }else if(currentPosition.y < target.y){
+                    result.y = Math.min(1, currentVector.y + 1);
+                }
+        
+                return result;
+            }
+`;
+
 @Component({
   selector: 'custom-car',
   standalone: true,
@@ -10,7 +44,8 @@ import { GameHandlerService } from '../game-handler.service';
   styleUrl: './custom-car.component.css'
 })
 export class CustomCarComponent {
-  userCode: string = '';
+  userCode: string = placeholder;
+  seeCustomCar: boolean = false;
 
   @Input() gameHandler!: GameHandlerService;
   
@@ -41,3 +76,5 @@ export class CustomCarComponent {
     this.gameHandler.addRaceCar(raceCarInstance);
   }
 }
+
+

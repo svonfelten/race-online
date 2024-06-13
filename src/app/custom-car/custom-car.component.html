@@ -1,4 +1,15 @@
 <section>
-    <textarea [(ngModel)]="userCode" rows="20" cols="50"></textarea>
-    <button (click)="executeUserCode()">Run Code</button>
+
+    @if(seeCustomCar){
+        <label>
+            To add a car simply implement the below interface that returns your name, color and the logic
+        </label>
+        <textarea [(ngModel)]="userCode" rows="25" cols="50">
+        
+        </textarea>
+        <button (click)="executeUserCode()">Add Car</button>
+    }@else{
+        <button (click)="seeCustomCar = true">Add a custom car</button>
+    }
+    
 </section>

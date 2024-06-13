@@ -19,6 +19,16 @@
     text-align: center;
 }
 
+details{
+    background-color: aliceblue;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+details footer{
+    font-size: smaller;
+}
+
 .map main{
     height: 804px;
     width: 804px;
