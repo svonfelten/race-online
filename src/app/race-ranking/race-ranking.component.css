@@ -1,0 +1,50 @@
+aside{
+    display: block;
+    width: 300px;
+    background-color: aliceblue;
+    height: fit-content;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px;
+} 
+
+.ranking{
+    list-style:decimal;
+}
+
+.ranking li{
+    margin-bottom: 15px;
+}
+
+.ranking li h3 , .ranking li p{
+    margin:0px 5px;
+    text-align: center;
+}
+
+.ranking li h3 {
+    background-color: #424b44;
+    border-radius: 1em;
+    padding: 2px;
+}
+
+footer label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+footer label *{
+    padding: 5px;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer input{
+    border-radius: 0.5em;
+}

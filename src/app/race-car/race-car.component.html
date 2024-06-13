@@ -1,0 +1,8 @@
+<main class="car" [style]="carStyle">
+
+</main>
+
+<span class="traces" *ngFor="let pos of state.history; let i=index" [style]="historyStyle(pos, i)"></span>
+
+<aside class="target" [style]="targetStyle">
+</aside>

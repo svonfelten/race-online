@@ -1,0 +1,47 @@
+<aside>
+    <ul class="ranking">
+      <li *ngFor="let state of sortedStates"> 
+        <h3 [style.color]="state.car.getColor()">{{ state.car.getName() }}</h3>
+        @if (!state.eliminated) {
+          <p>
+            Target : 
+              @if(!state.finished){
+                {{ state.currentTarget }}/{{ gameHandler.tagets.length }}
+              }@else {
+                Finished !
+              }
+            - {{ state.steps }} steps
+          </p>
+        }@else {
+          <p>Eliminated !</p>
+        }
+      </li>
+    </ul>
+    <footer>
+        <label>
+            <span>Map size</span>
+            <input [ngModel]="nbTiles" (ngModelChange)="changeSize($event)" type="text" size="9">
+        </label>
+        <label>
+            <span>Target number</span>
+            <input name="targetNumber" id="targetNumber" [ngModel]="targetNumber" (ngModelChange)="changeTargetNumber($event)" type="text" size="9">
+        </label>
+      <label>
+        <span>Speed</span>
+        <input type="range" [(ngModel)]="speed" (ngModelChange)="changeSpeed()" name="speed" min="1" max="250" />
+      </label>
+      <span>
+        <button [disabled]="playing" (click)="nextStep()">Next step</button>
+        <button (click)="startStop()">
+            @if(playing){
+                Stop
+              }@else {
+                Play
+              }
+        </button>
+        <button [disabled]="playing" (click)="replay()">Replay</button>
+      </span>
+    </footer>
+
+    <custom-car [gameHandler]="gameHandler"></custom-car>
+  </aside>

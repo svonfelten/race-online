@@ -1,0 +1,12 @@
+<div class="appDiv">
+  <section class="map">
+    <h1>Race</h1>
+    <main>
+      <div *ngFor="let state of gameHandler.getCurrentState">
+        <race-car [tileSize]="tileSize" [state]="state" [target]="gameHandler.tagets[state.currentTarget]"></race-car>
+      </div>
+    </main>
+  </section>
+  <race-ranking [(targetNumber)]="targetNumber" (targetNumberChange)="resetGame()" [(nbTiles)]="nbTiles" (nbTilesChange)="resetGame()" (onReset)="resetGame()" [gameHandler]="gameHandler"></race-ranking>
+  
+</div>

@@ -1,0 +1,32 @@
+.car{
+    position: absolute;
+    display: inline-block;
+}
+
+aside{
+    opacity: 0.7;
+    font-weight: bolder;
+    display: inline-block;
+    position: absolute;
+    font-size: 100%;
+}
+
+.traces{
+    display: inline-block;
+    position: absolute;
+}
+
+.target:before, .target:after {
+    position: absolute;
+    content: ' ';
+    width: 0.1em;
+    height: 1em;
+    left: 0.5em;
+    background-color: currentColor;
+  }
+.target:before {
+    transform: rotate(45deg);
+  }
+.target:after {
+    transform: rotate(-45deg);
+  }
