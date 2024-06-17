@@ -20,7 +20,7 @@ class RaceCar implements IRaceCar{
     currentVector: Vector,
     target: Position
   ): Vector {
-      const result = new Vector();
+      const result = {x: 0, y: 0};
       if(currentPosition.x > target.x){
           result.x = Math.max(-1, currentVector.x - 1);
       }else if(currentPosition.x < target.x){
