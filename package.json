@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --base-href https://svonfelten.github.io/race-online/ --output-path=./docs && cp ./docs/browser/* ./docs && rm -rf ./docs/browser"
   },
   "private": true,
   "dependencies": {
