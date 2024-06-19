@@ -2,6 +2,24 @@ label{
     font-size: small;
 }
 
+section main{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+main > aside{
+    margin-right: 20px;
+}
+
+aside label{
+    writing-mode: vertical-rl;
+    text-orientation:sideways-right;
+    background-color: gray;
+    color: white;
+    padding: 0.5em;
+}
+
 section{
     display: flex;
     flex-direction: column;

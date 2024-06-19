@@ -2,12 +2,20 @@
 
     @if(seeCustomCar){
         <label>
-            To add a car simply implement the below interface that returns your name, color and the logic. You also have acess to additionnal functions if you want to use Vectors and Postition <a (click)="seeLib()">click here to see implementation</a>
+            To add a car simply implement the below interface that returns your name, color and the logic.
+            You also have acess to additionnal functions if you want to use Vectors and Postition
         </label>
-        <code-mirror-editor [(content)]="userCode"></code-mirror-editor>
-        <!-- <textarea [(ngModel)]="userCode" rows="25" cols="50">
+        <main>
+            <code-mirror-editor [(content)]="userCode"></code-mirror-editor>
+            @if(seeLibcode){
+                <code-mirror-editor [editable]="false" [(content)]="libcode"></code-mirror-editor>
+            }
+            <aside>
+                <label (click)="seeLibcode = ! seeLibcode">See additionnal functions</label>
+            </aside>
+            
+        </main>
         
-        </textarea> -->
         <footer>
             <button (click)="seeCustomCar = false">Cancel</button>
             <button [disabled]="!libcodeLoaded" (click)="executeUserCode()">

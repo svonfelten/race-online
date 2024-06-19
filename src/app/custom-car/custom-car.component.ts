@@ -62,11 +62,11 @@ export class CustomCarComponent implements OnInit {
 
   libcode: string = '';
   libcodeLoaded: boolean = false;
+  seeLibcode: boolean = false;
 
   @Input() gameHandler!: GameHandlerService;
 
   ngOnInit(): void {
-    if(!isDevMode()){
     fetch('./Vector.ts').then(async (response) => {
       if(response.ok){
         this.libcode = this.libcode.concat(await response.text());
@@ -78,9 +78,6 @@ export class CustomCarComponent implements OnInit {
         });
       }
     });
-  }else{
-    this.libcodeLoaded = true;
-  }
   }
 
   executeUserCode() {

@@ -27,6 +27,7 @@
       </div>
     </main>
   </section>
-  <race-ranking [(targetNumber)]="targetNumber" (targetNumberChange)="resetGame()" [(nbTiles)]="nbTiles" (nbTilesChange)="resetGame()" (onReset)="resetGame()" [gameHandler]="gameHandler"></race-ranking>
-  
+  <aside>
+    <race-ranking [(targetNumber)]="targetNumber" (targetNumberChange)="resetGame()" [(nbTiles)]="nbTiles" (nbTilesChange)="resetGame()" (onReset)="resetGame()" [gameHandler]="gameHandler"></race-ranking>
+  </aside>
 </div>

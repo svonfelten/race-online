@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
-
+import { solarizedDark } from 'cm6-theme-solarized-dark'
 @Component({
   selector: 'code-mirror-editor',
   standalone: true,
@@ -13,6 +13,7 @@ import { javascript } from '@codemirror/lang-javascript';
 export class CodeMirrorEditorComponent implements OnInit {
   @ViewChild('editor', { static: true }) editorElement!: ElementRef;
 
+  @Input() editable: boolean = true;
   @Input() content: string = '';
   @Output() contentChange = new EventEmitter<string>();
 
@@ -35,8 +36,9 @@ export class CodeMirrorEditorComponent implements OnInit {
       doc: this.content,
       extensions: [
         basicSetup,
+        solarizedDark,
         javascript({typescript: true}),
-        updateListener
+        this.editable ? updateListener : EditorView.editable.of(false) // Make the editor read-only
       ]
     });
 
