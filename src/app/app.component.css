@@ -16,10 +16,22 @@
     }
 }
 
-.map h1 {
-    color: white;
-    font-family:Arial, Helvetica, sans-serif;
+.map header{
+    padding: 5px;
     text-align: center;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.map h1 {
+    width: fit-content;
+    background-color: white;
+    color: #5631e2;
+    border-radius: 5px;
+    padding: 6px;
 }
 
 details{
