@@ -3,9 +3,11 @@ aside{
     width: calc(100vw - 1000px);
     background-color: aliceblue;
     height: max-content;
+    max-height: 90%;
     border-radius: 5px;
     padding: 15px;
     margin: 15px;
+    overflow-y: scroll;
 } 
 
 .ranking{

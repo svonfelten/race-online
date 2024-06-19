@@ -1,6 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GameHandlerService } from '../game-handler.service';
+import { CodeMirrorEditorComponent } from '../code-mirror-editor/code-mirror-editor.component';
+import { Vector } from '../../shared/models/Vector';
+import { Position } from '../../shared/models/Position';
+
+//to import theses classes
+Vector;
+Position
 
 const placeholder = `
 class RaceCar implements IRaceCar{
@@ -20,7 +27,7 @@ class RaceCar implements IRaceCar{
     currentVector: Vector,
     target: Position
   ): Vector {
-      const result = {x: 0, y: 0};
+      const result = new Vector();
       if(currentPosition.x > target.x){
           result.x = Math.max(-1, currentVector.x - 1);
       }else if(currentPosition.x < target.x){
@@ -39,22 +46,44 @@ class RaceCar implements IRaceCar{
 @Component({
   selector: 'custom-car',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CodeMirrorEditorComponent],
   templateUrl: './custom-car.component.html',
   styleUrl: './custom-car.component.css'
 })
-export class CustomCarComponent {
+export class CustomCarComponent implements OnInit {
+  
   userCode: string = placeholder;
   seeCustomCar: boolean = false;
 
+  libcode: string = '';
+  libcodeLoaded: boolean = false;
+
   @Input() gameHandler!: GameHandlerService;
-  
+
+  ngOnInit(): void {
+    fetch('./Vector.ts').then(async (response) => {
+      if(response.ok){
+        this.libcode = this.libcode.concat(await response.text());
+        fetch('./Position.ts').then(async (response) => {
+          if(response.ok){
+            this.libcode = this.libcode.concat(await response.text()).replaceAll(/import.+/g, '').replaceAll('export ', '');
+            this.libcodeLoaded = true;
+          }
+        });
+      }
+    });
+  }
+
   executeUserCode() {
     try {
-      this.runUserCode(this.userCode);
+      this.runUserCode(this.userCode.concat(this.libcode));
     } catch (error: any) {
       console.error('Error executing user code:', error);
     }
+  }
+
+  seeLib(){
+    alert(this.libcode);
   }
 
   runUserCode(code: string) {

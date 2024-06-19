@@ -2,12 +2,16 @@
 
     @if(seeCustomCar){
         <label>
-            To add a car simply implement the below interface that returns your name, color and the logic
+            To add a car simply implement the below interface that returns your name, color and the logic. You also have acess to additionnal functions if you want to use Vectors and Postition <a (click)="seeLib()">click here to see implementation</a>
         </label>
-        <textarea [(ngModel)]="userCode" rows="25" cols="50">
+        <code-mirror-editor [(content)]="userCode"></code-mirror-editor>
+        <!-- <textarea [(ngModel)]="userCode" rows="25" cols="50">
         
-        </textarea>
-        <button (click)="executeUserCode()">Add Car</button>
+        </textarea> -->
+        <footer>
+            <button (click)="seeCustomCar = false">Cancel</button>
+            <button [disabled]="!libcodeLoaded" (click)="executeUserCode()">Add custom car</button>
+        </footer>
     }@else{
         <button (click)="seeCustomCar = true">Add a custom car</button>
     }
