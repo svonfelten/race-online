@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GameHandlerService } from '../game-handler.service';
 import { CodeMirrorEditorComponent } from '../code-mirror-editor/code-mirror-editor.component';
@@ -13,6 +13,10 @@ const placeholder = `
 class RaceCar implements IRaceCar{
 
   constructor(private mapSize: number){ }
+
+  set gameSize(size: number){
+    this.gameSize = size;
+  }
 
   getName(): string {
       return "Slow car"
@@ -54,6 +58,7 @@ export class CustomCarComponent implements OnInit {
   
   userCode: string = placeholder;
   seeCustomCar: boolean = false;
+  hasCustomCar: boolean = false;
 
   libcode: string = '';
   libcodeLoaded: boolean = false;
@@ -61,6 +66,7 @@ export class CustomCarComponent implements OnInit {
   @Input() gameHandler!: GameHandlerService;
 
   ngOnInit(): void {
+    if(!isDevMode()){
     fetch('./Vector.ts').then(async (response) => {
       if(response.ok){
         this.libcode = this.libcode.concat(await response.text());
@@ -72,6 +78,9 @@ export class CustomCarComponent implements OnInit {
         });
       }
     });
+  }else{
+    this.libcodeLoaded = true;
+  }
   }
 
   executeUserCode() {
@@ -102,7 +111,13 @@ export class CustomCarComponent implements OnInit {
     // Instantiate the user class and test it
     const raceCarInstance = new RaceCar();
 
+    if(this.hasCustomCar){
+      this.gameHandler.removeCar(this.gameHandler.getCurrentState.findIndex(c => c.car.getName() == raceCarInstance.getName()));
+      this.gameHandler.resetGame();
+    }
+
     this.gameHandler.addRaceCar(raceCarInstance);
+    this.hasCustomCar = true;
   }
 }
 

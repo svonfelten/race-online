@@ -17,6 +17,8 @@ function compareVectors(vector1: Vector, vector2: Vector): boolean {
   return xDifference <= 1 && yDifference <= 1;
 }
 
+const maxHistory = 50;
+
 export class GameHandlerService {
 
   private currentState: Array<State> = [];
@@ -72,7 +74,7 @@ export class GameHandlerService {
     this.currentTargets = []
     this.currentState = this.currentState.map(state => (
       {
-        car: state.car,
+        car: new (state.car.constructor as any)(this.gameSize),
         eliminated: false,
         finished: false,
         position: new Position(Math.round(this.gameSize/2), Math.round(this.gameSize/2)),
@@ -130,7 +132,7 @@ export class GameHandlerService {
         }else{
           this.currentState[i].vector = result;
           this.currentState[i].history.unshift(new Position().fromPosition(this.currentState[i].position));
-          while(this.currentState[i].history.length > 200){
+          while(this.currentState[i].history.length > maxHistory){
             this.currentState[i].history.pop();
           }
           this.currentState[i].position.applyVector(result);

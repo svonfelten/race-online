@@ -52,12 +52,12 @@ export class RaceRankingComponent {
     }else{
       this.timeout = setInterval(() => this.nextStep(), 250- this.speed) as any;
       this.playing = true;
-    }
-    
+    } 
   }
 
   changeSpeed(){
-
+    this.startStop();
+    this.startStop();
   }
 
   changeSize(event: number){

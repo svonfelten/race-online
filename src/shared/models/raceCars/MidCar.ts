@@ -4,9 +4,7 @@ import { Vector } from "../Vector";
 import { getSum } from "./utils";
 
 
-export class MidCar implements IRaceCar{
-
-    constructor(private mapSize: number){ }
+export class MidCar extends IRaceCar{
 
     getName(): string {
         return "Mid car"

@@ -3,9 +3,7 @@ import { Position } from "../Position";
 import { Vector } from "../Vector";
 import { getSum } from "./utils";
 
-export class GoodCar implements IRaceCar{
-
-    constructor(private mapSize: number){ }
+export class GoodCar extends IRaceCar{
 
     getName(): string {
         return "Good car";

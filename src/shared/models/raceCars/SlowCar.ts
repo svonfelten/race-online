@@ -3,9 +3,7 @@ import { Position } from "../Position";
 import { Vector } from "../Vector";
 
 
-export class SlowCar implements IRaceCar{
-
-    constructor(private mapSize: number){ }
+export class SlowCar extends IRaceCar{
 
     getName(): string {
         return "Slow car"

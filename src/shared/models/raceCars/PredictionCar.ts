@@ -3,11 +3,10 @@ import { Position } from "../Position";
 import { Vector } from "../Vector";
 import { getSum } from "./utils";
 
-export class PredictionCar implements IRaceCar{
-
-    constructor(private mapSize: number){ }
+export class PredictionCar extends IRaceCar{
 
     private maxPrediction = 200;
+
 
     getName(): string {
         return "Prediction car";
@@ -28,6 +27,7 @@ export class PredictionCar implements IRaceCar{
                 if(this.checkXSpeed(newPosition, testVector, -1) && this.checkYSpeed(newPosition, testVector, -1)){                    
                     const res = this.computeUntilTarget(newPosition, testVector, target);
                     if(res !== undefined && bestResult.count >= res){
+                        console.log('pass here');
                         bestResult.vector = new Vector().fromVector(testVector);
                         bestResult.count = res;
                     }
@@ -50,6 +50,7 @@ export class PredictionCar implements IRaceCar{
                 return undefined;
             }
         }
+        console.log('pass there');
 
         return res;
     }

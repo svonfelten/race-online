@@ -10,7 +10,13 @@
         </textarea> -->
         <footer>
             <button (click)="seeCustomCar = false">Cancel</button>
-            <button [disabled]="!libcodeLoaded" (click)="executeUserCode()">Add custom car</button>
+            <button [disabled]="!libcodeLoaded" (click)="executeUserCode()">
+                @if(!hasCustomCar){
+                    Add custom car
+                }@else{
+                    Update custom car
+                }
+            </button>
         </footer>
     }@else{
         <button (click)="seeCustomCar = true">Add a custom car</button>

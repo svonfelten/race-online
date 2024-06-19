@@ -3,9 +3,7 @@ import { Position } from "../Position";
 import { Vector } from "../Vector";
 import { getRandomArbitrary, getSum } from "./utils";
 
-export class SixEyeCar implements IRaceCar{
-
-    constructor(private mapSize: number){ }
+export class SixEyeCar extends IRaceCar{
 
     private maxPrediction = 100;
     private fakeTarget = new Position(getRandomArbitrary(0, this.mapSize-1), getRandomArbitrary(0, this.mapSize-1));
