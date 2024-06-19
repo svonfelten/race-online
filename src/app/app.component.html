@@ -21,7 +21,7 @@
       </footer>
 
     </details>
-    <main>
+    <main #map>
       <div *ngFor="let state of gameHandler.getCurrentState">
         <race-car [tileSize]="tileSize" [state]="state" [target]="gameHandler.tagets[state.currentTarget]"></race-car>
       </div>

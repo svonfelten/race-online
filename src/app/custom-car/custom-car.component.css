@@ -8,6 +8,8 @@ section main{
     flex-direction: row;
 }
 
+
+
 main > aside{
     margin-right: 20px;
 }
@@ -19,6 +21,18 @@ aside label{
     color: white;
     padding: 0.5em;
 }
+
+@media only screen and (max-width: 900px){
+    section main{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    aside label{
+        writing-mode: horizontal-tb;
+    }
+  }
 
 section{
     display: flex;

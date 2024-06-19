@@ -9,6 +9,7 @@ aside{
     margin: 15px;
     overflow-y: scroll;
     overflow-x: visible;
+    padding: 25px;
 } 
 
 .ranking{

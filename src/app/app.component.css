@@ -1,16 +1,19 @@
 .appDiv{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-content:center;
 
     background-color: #0093E9;
     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
+}
+
+@media only screen and (min-width: 900px){
+    .appDiv{
+        flex-direction: row;
+    }
 }
 
 .map h1 {
@@ -30,8 +33,10 @@ details footer{
 }
 
 .map main{
-    height: 804px;
-    width: 804px;
+    aspect-ratio: 1 / 1;
+    width: 90vw;
+    max-height: 804px;
+    max-width: 804px;
     border: 2px solid black ;
     display: inline-block;
     position: relative;
